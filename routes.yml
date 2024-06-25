@@ -1,0 +1,13 @@
+http:
+  routers:
+    wallet-service-router:
+      rule: "Host(`localhost`) && PathPrefix(`/api/v1/wallet`)"
+      service: wallet-service
+      entryPoints:
+        - web
+
+  services:
+    wallet-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:8001"

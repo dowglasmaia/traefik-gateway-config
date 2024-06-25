@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  traefik:
+    image: traefik:v2.10
+    ports:
+      - "80:80"     # Porta HTTP
+      - "8080:8080" # Porta do painel Traefik
+    volumes:
+      - "./traefik.yml:/etc/traefik/traefik.yml" # Configuração do Traefik
+      - "./routes.yml:/etc/traefik/routes.yml"   # Configuração das rotas
+    networks:
+      - web
+
+networks:
+  web:
+    external: false
